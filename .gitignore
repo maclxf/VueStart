@@ -1,0 +1,14 @@
+.DS_Store
+Thumbs.db
+
+# IDE Files
+#-------------------------
+/nbproject/
+.idea/*
+
+#-------------------------
+vue-2.6.10/*
+
+
+# composer相关文件
+vendor/*
