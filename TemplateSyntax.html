@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>templateSyntax</title>
+    <script src="C:\Work\Projects\VueStart\vue-2.6.10\dist\vue.js"></script>
+</head>
+<body>
+<h2>插值</h2>
+<span class="app-1">这个是会变化的值: {{c_msg}}</span>
+<br>
+<span class="app-1" v-once>这个是不会变化的值: {{d_msg}}</span>
+
+<h2>原始 HTML</h2>
+<!--没出现我要的效果原因没找到-->
+<p id="app-2">Using mustaches: {{ rawHtml }}</p>
+<p>Using v-html directive: <span v-html="rawHtml"></span></p>
+
+<h2>动态参数</h2>
+<a v-bind:[attributename]="www.baidu.com" target="_blank"> go to baidu </a>
+<p id="app-3" v-on:[eventname]="ddd">click me</p>
+
+
+</body>
+</html>
+<script type="text/javascript">
+    let app1 = new Vue({
+        el: '.app-1',
+        data: {
+            c_msg: 'change me',
+            d_msg: 'you can not change me'
+        }
+    });
+
+    let app2 = new Vue({
+        el: '#app-2',
+        data: {
+            rawHtml: '<span style="color:red">This should be red</span>',
+        }
+    });
+
+    let app3 = new Vue({
+        el: '#app-3',
+        data: {
+            attributename:'href',
+            eventname:'click'
+        },
+        methods: {
+            ddd:function() {
+                alert(123);
+            }
+        }
+    });
+</script>
