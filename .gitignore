@@ -12,3 +12,6 @@ vue-2.6.10/*
 
 # composer相关文件
 vendor/*
+
+*.sublime-project
+*.sublime-workspace
