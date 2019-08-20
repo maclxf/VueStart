@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>computeAttr</title>
+    <script src="./vue-2.6.10\dist\vue.js"></script>
+</head>
+<body>
+<h2>Component</h2>
+
+<div id="app-1">
+    <button-count></button-count>
+    <button-count></button-count>
+    <button-count></button-count>
+    <button-count></button-count>
+</div>
+
+<div id="app-2">
+    <blog-area title="First Title"></blog-area>
+    <blog-area title="Sec Title"></blog-area>
+    <blog-area title="Thr Title"></blog-area>
+</div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+    Vue.component('blog-area', {
+        props:['title'],
+        template:'<h2>{{title}}</h2>'
+    });
+    Vue.component('button-count', {
+        data:function() {
+            return {
+                count:0
+            }
+        },
+        template:'<button v-on:click="count++">You count {{count}} times</button>'
+    });
+    let vm1 = new Vue({
+        el:'#app-1'
+    });
+
+    let vm2 = new Vue({
+        el:'#app-2'
+    });
+
+
+</script>
