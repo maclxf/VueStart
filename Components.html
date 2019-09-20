@@ -3,7 +3,6 @@
 <html lang="en">
 <head>
     <script src="./vue-2.6.10\dist\vue.js"></script>
-
     <title>Components</title>
     <meta charset="UTF-8">
 </head>
@@ -34,14 +33,13 @@
         <blog-post v-for="(info, index) in infoes" v-bind:keys="index" v-bind:info="info"></blog-post>
     </div>
 
-    
     <h2>component-6</h2>
     <div id="component-6" >
-
+        <!-- 最简单的方式，附静态值，直接把值，付给组件设置好的属性，html的属性和组件中的props一一对应，组件会自动把值放进去，注意是{{}} -->
         <blog title="T1" comment="C1" post-date="2019-05-22" date="2019-08-22" author="myj"></blog>
+        <!-- 这个是通过绑定属性的方式，bind后面对应绑定的是属性props中的内容 -->
         <blog v-bind:title="title" v-bind:comment="comment" v-bind:post-date="postDate" v-bind:date="date" v-bind:author="author"></blog>
     </div>
-
 
     <h2>component-7</h2>
     <div id="component-7" >
@@ -53,8 +51,47 @@
     <div id="component-8" >
         <blog-v v-for="(a, index) in posts" v-bind:keys="index" v-bind:title="a.title" v-bind:comment="a.comment" v-bind:post-date="a.postDate" v-bind:date="a.date" v-bind:author="a.author"></blog-v>
     </div>
+
+    <h2>component-9</h2>
+    <div id="component-9">
+        <blog-check v-bind:name="people.name" v-bind:age="people.age"></blog-check>
+    </div>
 </body>
 <script type="text/javascript">
+    Vue.component('blog-check', {
+        props: {
+            name:{
+              type: String,
+              required: true
+            },
+            age:Number,
+            fun:{
+                type: Object,
+                default: function() {
+                    return {
+                        say:'hello world',
+                        do:'work hard'
+                    }
+                }
+            },
+            whoAreYou:{
+                validator:function() {
+                    return ['lxf', 'ac', 'kaka'].indexOf(value) !== -1
+                }
+            }
+        },
+        template:'<div><div>name:{{name}}</div><div>age:{{age}}</div></div>'
+    });
+    var component9 = new Vue({
+        el:'#component-9',
+        data:{
+            people: {
+                name: 'lxf',
+                age:19
+            }
+        }
+    });
+
 
     Vue.component('blog-v', {
       props:['title', 'comment', 'postDate', 'date', 'author'],
@@ -69,7 +106,7 @@
            posts: [
                {title: 'T8-1', comment:'C8-1', postDate:'2019-05-22', date:'2019-08-22', author:'myj'},
                {title: 'T8-2', comment:'C8-2', postDate:'2019-06-21', date:'2019-08-21', author:'lxf'},
-           ] 
+           ]
         }
     });
 
@@ -86,10 +123,9 @@
            posts: [
                {title: 'T7-1', comment:'C7-1', postDate:'2019-05-22', date:'2019-08-22', author:'myj'},
                {title: 'T7-2', comment:'C7-2', postDate:'2019-06-21', date:'2019-08-21', author:'lxf'},
-           ] 
+           ]
         }
     });
-
 
     Vue.component('blog', {
       props:['title', 'comment', 'postDate', 'date', 'author'],
