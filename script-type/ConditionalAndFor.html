@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ConditionalAndFor</title>
+    <script src="./vue-2.6.10\dist\vue.js"></script>
+</head>
+<body>
+<h2>Conditional</h2>
+<div id="app-1">
+	<div v-if="ok">It`s ok</div>
+	<div v-else>Oh no</div>
+</div>
+
+<div id="app-2">
+	<div v-if="type === 'one'">1</div>
+	<div v-else-if="type === 'two'">2</div>
+	<div v-else-if="type === 'three'">3</div>
+	<div v-else>other</div>
+</div>
+
+<div id="app-3">
+	<template v-if="awesome">
+		<p>This</p>
+		<p>is</p>
+		<p>awesome</p>
+	</template>
+
+	<template v-else>
+		<p>This</p>
+		<p>is not</p>
+		<p>awesome</p>
+	</template>
+</div>
+
+<h2>ForInArray</h2>
+<ul id="app-4">
+	<li v-for="item in items">
+		{{item.message}}
+	</li>
+	<li v-for="(item, index) in items">
+		{{parentMessage}} - {{index}} - {{item.message}}
+	</li>
+</ul>
+
+<h2>ForInObj</h2>
+<ul id="app-5">
+	<li v-for="value in obj">
+		{{value}}
+	</li>
+
+	<li v-for="(value, name) in obj">
+		{{name}} - {{value}}
+	</li>
+</ul>
+
+
+</body>
+</html>
+
+<script type="text/javascript">
+    let app1 = new Vue({
+        el: '#app-1',
+        data: {
+            ok : false
+        },
+    });
+
+    let app2 = new Vue({
+        el: '#app-2',
+        data: {
+            type: 'one'
+        },
+    });
+
+    let app3 = new Vue({
+        el: '#app-3',
+        data: {
+            awesome: true
+        },
+    });
+
+    let app4 = new Vue({
+        el: '#app-4',
+        data: {
+        	parentMessage: 'Parent',
+            items: [
+            	{message: '中国新闻网'},
+            	{message: '新浪网'}
+            ]
+        },
+    });
+
+    let app5 = new Vue({
+        el: '#app-5',
+        data: {
+            obj: {
+            	title: 'vue doc',
+            	memory: '30m',
+            	date: '2019-08-13'
+
+            }
+        },
+    });
+</script>

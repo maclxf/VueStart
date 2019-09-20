@@ -8,7 +8,7 @@ Thumbs.db
 
 #-------------------------
 doit/vue-2.6.10/*
-
+node_modules/*
 
 # composer相关文件
 vendor/*
