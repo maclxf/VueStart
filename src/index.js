@@ -1,15 +1,12 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-Vue.use(VueRouter)
-
-import index from './app/index.vue'
-
 import 'bootstrap/dist/css/bootstrap.css'
 
-import car from './app/car.vue'
-
+import index from './app/index.vue'
 import router from './router.js'
 
+
+
+import car from './app/car.vue'
 
 
 let vm = new Vue({
