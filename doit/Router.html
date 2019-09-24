@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="./vue-2.6.10\dist\vue.js"></script>
+	<script src="./vue-2.6.10\dist\vue-router.js"></script>
+    <title>Router</title>
+    <meta charset="UTF-8">
+    <style type="text/css">
+    	.myactiveclass {
+    		background-color: black;
+    		color: red;
+    		font-size: 20px
+    	}
+    </style>
+</head>
+<body>
+	<h2>Router</h2>
+	<div id="app">
+		<!-- <a href="#/login">登录</a>
+		<a href="#/register">注册</a> -->
+		<router-link to="/login?id=11&name=lxf">登录</router-link>
+		<router-link to="/register">注册</router-link>
+		<router-view></router-view>
+	</div>
+</body>
+<script type="text/javascript">
+let login = {
+		template: '<h1>登录---{{$route.query.id}}---{{$route.query.name}}</h1>',
+		created() {
+			console.log(this.$route.query.id);
+		}
+};
+let register = {
+		template: '<h1>注册</h1>'
+};
+
+let vr = new VueRouter({
+	routes:[
+		{path:'/', redirect:'/login'},
+		{path: '/login', component:login},
+		{path: '/register', component:register},
+	],
+	linkActiveClass:'myactiveclass'
+});
+
+let vm = new Vue({
+		el:'#app',
+		data: {},
+		methods:{},
+		router:vr,
+
+});
+</script>
+</html>
