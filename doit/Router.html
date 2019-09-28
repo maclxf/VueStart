@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+	<!-- 1. -->
     <script src="./vue-2.6.10\dist\vue.js"></script>
 	<script src="./vue-2.6.10\dist\vue-router.js"></script>
+
     <title>Router</title>
     <meta charset="UTF-8">
     <style type="text/css">
@@ -22,8 +25,90 @@
 		<router-link to="/register">注册</router-link>
 		<router-view></router-view>
 	</div>
+
+	<h2>OtherRouter</h2>
+	<div id="app-1">
+
+		<router-link to="/part_1">part_1</router-link>
+		<router-link to="/part_2">part_2</router-link>
+		<!-- 2. -->
+		<router-view></router-view>
+	</div>
+
+	<template id="part_1_g">
+		<div>
+			<h1>这个是part1组件</h1>
+			<router-link to="/part_1/part_1_1">part_1_1</router-link>
+			<router-link to="/part_1/part_1_2">part_1_2</router-link>
+			<router-view></router-view>
+		</div>
+	</template>
+
 </body>
 <script type="text/javascript">
+	/*3.*/
+	let part_1 = {
+		template:'#part_1_g'
+	}
+
+	let part_1_1 = {
+		template:'<h1>这个是part11组件</h1>'
+	}
+	let part_1_2 = {
+		template:'<h1>这个是part12组件</h1>'
+	}
+
+	let part_2 = {
+		template:'<h1>这个是part2组件</h1>'
+	}
+
+	/*4*/
+	let router = new VueRouter({
+		routes:[
+			{
+				path: '/part_1',
+				component:part_1,
+				children:[
+					{path: 'part_1_1', component:part_1_1},
+					{path: 'part_1_2', component:part_1_2}
+				]
+			},
+			{path: '/part_2', component:part_2},
+		]
+	});
+
+	let vm_1 = new Vue({
+		el:'#app-1',
+		data:{},
+		methods:{},
+		/*5*/
+		router
+	});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 let login = {
 		template: '<h1>登录---{{$route.query.id}}---{{$route.query.name}}</h1>',
 		created() {

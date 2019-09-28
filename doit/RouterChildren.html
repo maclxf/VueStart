@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="./vue-2.6.10\dist\vue.js"></script>
+	<script src="./vue-2.6.10\dist\vue-router.js"></script>
+    <title>Router</title>
+    <meta charset="UTF-8">
+
+    <style type="text/css">
+    	html, body {
+			margin: 0;padding: 0;
+    	}
+    	.header {
+    		background-color: orange;
+    		height: 80px
+    	}
+    	h1 {
+    		margin: 0;padding: 0;
+    	}
+		.left {
+			background-color: lightblue;
+			flex: 0.2
+		}
+		.main {
+			background-color: lightpink;
+			flex: 0.8
+		}
+		.cantainer {
+			display: flex;height: 600px
+		}
+    </style>
+</head>
+<body>
+	<div id="app">
+
+		<router-view></router-view>
+		<div class="cantainer">
+			<router-view name="left"></router-view>
+			<router-view name="main"></router-view>
+		</div>
+
+	</div>
+	<template id="main_children">
+		<h1 class="main">main 组件</h1>
+
+		<div>
+			<router-link to="/main/part_1">part_1</router-link>
+			<router-link to="/main/part_2">part_2</router-link>
+		</div>
+		<router-view></router-view>
+	</template>
+
+</body>
+<script type="text/javascript">
+	let header = {
+		template: '<h1 class="header">header 组件</h1>'
+	}
+
+	let left = {
+		template: '<h1 class="left">left 组件</h1>'
+	}
+
+	let part_1 = {
+		template:'<h2>part_1组件</h2>'
+	}
+
+	let part_2 = {
+		template:'<h2>part_2组件</h2>'
+	}
+
+	let main = {
+		template: '#main_children',
+		children:[
+			{path: '/main/part_1', component:part_1},
+			{path: '/main/part_2', component:part_2}
+		]
+	}
+
+	let router = new VueRouter({
+		routes: [{
+			path: '/',
+			components: {
+				default:header,
+				left:left,
+				main:main
+			}
+		}]
+	});
+
+	let vm = new Vue({
+		el: '#app',
+		data: {},
+		methods:{},
+		router
+	});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*let login = {
+		template: '<h1>登录---{{$route.query.id}}---{{$route.query.name}}</h1>',
+		created() {
+			console.log(this.$route.query.id);
+		}
+};
+let register = {
+		template: '<h1>注册</h1>'
+};
+
+let vr = new VueRouter({
+	routes:[
+		{path:'/', redirect:'/login'},
+		{path: '/login', component:login},
+		{path: '/register', component:register},
+	],
+	linkActiveClass:'myactiveclass'
+});
+
+let vm = new Vue({
+		el:'#app',
+		data: {},
+		methods:{},
+		router:vr,
+
+});*/
+</script>
+</html>
